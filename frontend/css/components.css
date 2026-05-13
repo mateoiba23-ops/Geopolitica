@@ -1,0 +1,273 @@
+/* ─── COMPONENTS ─────────────────────────────────────────────────────────── */
+
+/* Skill display */
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+}
+.skill-icon { font-size: 22px; width: 32px; text-align: center; }
+.skill-info { flex: 1; }
+.skill-name { font-family: var(--font-display); font-size: 14px; font-weight: 600; letter-spacing: 1px; }
+.skill-level { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+.skill-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+/* Factory card */
+.factory-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: var(--transition);
+}
+.factory-card:active { opacity: 0.9; }
+.factory-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.factory-type-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.factory-name { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+.factory-meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+.factory-body { padding: 12px 14px; }
+.factory-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.factory-stat { background: var(--bg-input); border-radius: 6px; padding: 8px 10px; }
+.factory-stat-label { font-size: 9px; color: var(--text-secondary); font-family: var(--font-mono); letter-spacing: 1px; }
+.factory-stat-val { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-top: 2px; }
+.factory-footer { padding: 10px 14px; display: flex; gap: 8px; border-top: 1px solid var(--border); }
+
+/* Region card */
+.region-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.region-card:active { border-color: var(--accent); }
+.region-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.region-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; }
+.region-capital { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+.region-stats-row { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.region-stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.region-indicators { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+.region-indicator { text-align: center; }
+.region-indicator-label { font-size: 9px; color: var(--text-dim); letter-spacing: 1px; font-family: var(--font-mono); }
+.region-indicator-val { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+.ind-bar { height: 4px; background: var(--bg-input); border-radius: 2px; margin-top: 3px; overflow: hidden; }
+.ind-bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+/* Player row */
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.player-row:active { border-color: var(--accent); }
+.player-rank { font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); width: 24px; text-align: center; }
+.player-info { flex: 1; }
+.player-nick { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+.player-region { font-size: 11px; color: var(--text-secondary); }
+.player-level-badge { font-family: var(--font-display); font-size: 13px; color: var(--accent); font-weight: 700; }
+
+/* Job card */
+.job-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+.job-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.job-icon { font-size: 28px; }
+.job-title { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+.job-region { font-size: 11px; color: var(--text-secondary); }
+.job-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.job-stat { font-family: var(--font-mono); font-size: 11px; }
+
+/* Market listing */
+.listing-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin-bottom: 8px;
+  transition: var(--transition);
+}
+.listing-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.listing-resource { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
+.listing-price { font-family: var(--font-mono); font-size: 18px; color: var(--money); font-weight: 700; }
+.listing-meta { font-size: 11px; color: var(--text-secondary); }
+.listing-footer { display: flex; justify-content: space-between; align-items: center; }
+
+/* Chat */
+.chat-wrap { display: flex; flex-direction: column; height: calc(100vh - 130px); }
+.chat-channels { display: flex; gap: 6px; padding: 12px 16px 6px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.chat-channel-btn {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  transition: var(--transition);
+}
+.chat-channel-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+.chat-messages { flex: 1; overflow-y: auto; padding: 10px 16px; }
+.chat-msg { margin-bottom: 8px; }
+.chat-msg-system { text-align: center; }
+.chat-msg-system .chat-msg-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+.chat-msg-header { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.chat-msg-nick { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--accent); }
+.chat-msg-nick.admin-nick { color: var(--gold); }
+.chat-msg-nick.premium-nick { color: var(--warning); }
+.chat-msg-lv { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); }
+.chat-msg-text { font-size: 14px; color: var(--text-primary); word-break: break-word; padding-left: 2px; }
+.chat-msg-time { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-left: auto; }
+.chat-input-wrap {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+.chat-input-wrap input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-primary);
+  font-size: 14px;
+  padding: 10px 16px;
+  outline: none;
+}
+.chat-input-wrap input:focus { border-color: var(--accent); }
+.chat-send-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Section header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* Info row */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { font-size: 12px; color: var(--text-secondary); font-family: var(--font-mono); }
+.info-val { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+
+/* XP pill */
+.xp-wrap { margin: 10px 0; }
+.xp-info { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); margin-bottom: 4px; }
+
+/* Energy input */
+.energy-slider-wrap { margin: 12px 0; }
+.energy-slider-wrap label { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); letter-spacing: 1px; display: block; margin-bottom: 6px; }
+.energy-slider { width: 100%; appearance: none; height: 6px; background: var(--bg-input); border-radius: 3px; outline: none; }
+.energy-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--energy);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255,152,0,0.4);
+}
+
+/* Notification item */
+.notif-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+.notif-item.unread { background: rgba(0,212,255,0.04); }
+.notif-icon { font-size: 20px; flex-shrink: 0; }
+.notif-text { font-size: 13px; color: var(--text-primary); flex: 1; }
+.notif-time { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 4px; }
+
+/* Skill button disabled state */
+.skill-btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.skill-btn-disabled:active { transform: none; }
+
+/* Work result toast with detail */
+.work-result-detail {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}

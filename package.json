@@ -1,0 +1,21 @@
+{
+  "name": "geopolitica-colombia",
+  "version": "1.0.0",
+  "description": "Simulador geopolítico persistente multijugador - Colombia",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "Geopolitica Game",
+  "license": "MIT"
+}

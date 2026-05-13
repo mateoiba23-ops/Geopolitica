@@ -1,0 +1,264 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SISTEMA DE TEMAS — GEOPOLÍTICA COLOMBIA
+   Tema Moderno (default) + Tema Clásico
+   Cambio instantáneo via data-theme en <html>
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── TEMA MODERNO (default, ya definido en main.css) ───────────────────── */
+[data-theme="modern"] {
+  --bg-base:    #080c14;
+  --bg-panel:   #0d1422;
+  --bg-card:    #121c2e;
+  --bg-card2:   #162034;
+  --bg-input:   #0a1220;
+  --border:     #1e3050;
+  --border-bright: #2a4570;
+  --accent:     #00d4ff;
+  --accent2:    #0099cc;
+  --accent-glow: rgba(0,212,255,0.15);
+  --radius:     8px;
+  --radius-lg:  14px;
+  --card-padding: 16px;
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body:  'Exo 2', sans-serif;
+  --nav-height: 58px;
+  --hud-height: 50px;
+}
+
+/* ─── TEMA CLÁSICO ───────────────────────────────────────────────────────── */
+[data-theme="classic"] {
+  --bg-base:    #0a0a0a;
+  --bg-panel:   #111111;
+  --bg-card:    #1a1a1a;
+  --bg-card2:   #222222;
+  --bg-input:   #0d0d0d;
+  --border:     #333333;
+  --border-bright: #555555;
+  --accent:     #e8a020;
+  --accent2:    #c07010;
+  --accent-glow: rgba(232,160,32,0.12);
+  --radius:     2px;
+  --radius-lg:  3px;
+  --card-padding: 10px;
+  --font-display: 'Share Tech Mono', monospace;
+  --font-body:  'Share Tech Mono', monospace;
+  --nav-height: 50px;
+  --hud-height: 44px;
+}
+
+/* ─── CLASSIC: Overrides específicos ────────────────────────────────────── */
+[data-theme="classic"] body {
+  font-size: 13px;
+}
+
+[data-theme="classic"] .card {
+  border-radius: var(--radius);
+  padding: var(--card-padding);
+  border: 1px solid var(--border);
+}
+
+[data-theme="classic"] .btn-primary {
+  border-radius: var(--radius);
+  letter-spacing: 1px;
+  background: var(--accent);
+  color: #000;
+  box-shadow: none;
+}
+
+[data-theme="classic"] .btn-ghost {
+  border-radius: var(--radius);
+}
+
+[data-theme="classic"] .bottom-nav {
+  height: var(--nav-height);
+  border-top: 2px solid var(--accent);
+}
+
+[data-theme="classic"] .nav-btn {
+  padding: 6px 2px;
+}
+
+[data-theme="classic"] .nav-btn.active {
+  color: var(--accent);
+  background: rgba(232,160,32,0.08);
+}
+
+[data-theme="classic"] .nav-btn::before {
+  background: var(--accent);
+  height: 2px;
+}
+
+[data-theme="classic"] .nav-icon {
+  font-size: 16px;
+}
+
+[data-theme="classic"] .nav-label {
+  font-size: 8px;
+  letter-spacing: 0;
+}
+
+[data-theme="classic"] .hud {
+  border-bottom: 2px solid var(--accent);
+  padding: 5px 10px;
+}
+
+[data-theme="classic"] .hud-logo {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+[data-theme="classic"] .hud-stat {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: var(--radius);
+}
+
+[data-theme="classic"] .panel-title {
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+[data-theme="classic"] .modal-box {
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+}
+
+[data-theme="classic"] .auth-container {
+  gap: 12px;
+}
+
+[data-theme="classic"] .logo-title {
+  font-size: 32px;
+  letter-spacing: 4px;
+}
+
+[data-theme="classic"] .profile-hero {
+  padding: 14px 12px;
+}
+
+[data-theme="classic"] .profile-avatar {
+  width: 52px;
+  height: 52px;
+  font-size: 22px;
+}
+
+[data-theme="classic"] .profile-nick {
+  font-size: 20px;
+}
+
+[data-theme="classic"] .home-action-btn {
+  padding: 10px 6px;
+  border-radius: var(--radius);
+}
+
+[data-theme="classic"] .home-action-icon {
+  font-size: 22px;
+}
+
+[data-theme="classic"] .home-action-label {
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="classic"] .factory-card {
+  border-radius: var(--radius);
+}
+
+[data-theme="classic"] .factory-card-header {
+  padding: 10px;
+}
+
+[data-theme="classic"] .region-card {
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+[data-theme="classic"] .chat-msg-nick {
+  font-size: 11px;
+}
+
+[data-theme="classic"] .chat-msg-text {
+  font-size: 12px;
+}
+
+[data-theme="classic"] .stat-bar-track {
+  height: 4px;
+}
+
+[data-theme="classic"] .field-group input,
+[data-theme="classic"] .field-group select,
+[data-theme="classic"] .field-group textarea {
+  border-radius: var(--radius);
+  font-size: 13px;
+  padding: 9px 10px;
+}
+
+[data-theme="classic"] .badge {
+  border-radius: 2px;
+  font-size: 9px;
+}
+
+/* Classic: más información visible, menos espacio vacío */
+[data-theme="classic"] .panel {
+  padding: 10px;
+}
+
+[data-theme="classic"] .card {
+  margin-bottom: 8px;
+}
+
+[data-theme="classic"] .info-row {
+  padding: 5px 0;
+}
+
+[data-theme="classic"] .skill-item {
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
+
+/* Classic: botón de tema visible */
+[data-theme="classic"] #theme-toggle-btn {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ─── BOTÓN DE CAMBIO DE TEMA ────────────────────────────────────────────── */
+#theme-toggle-btn {
+  position: fixed;
+  bottom: calc(var(--nav-height, 58px) + 10px);
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+#theme-toggle-btn:active {
+  transform: scale(0.9);
+}
+
+/* ─── TRANSICIÓN SUAVE al cambiar tema ───────────────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Evitar que las transiciones afecten animaciones importantes */
+.stat-bar-fill,
+.auth-glow,
+.logo-icon,
+.nav-btn::before {
+  transition: all 0.2s ease;
+}

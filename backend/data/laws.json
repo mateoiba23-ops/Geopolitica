@@ -1,0 +1,25 @@
+{
+  "41051515-f780-42e0-a6b4-b8f591494bc4": {
+    "id": "41051515-f780-42e0-a6b4-b8f591494bc4",
+    "stateId": "34e79d05-461b-4cc5-b48a-eb4367e243cf",
+    "stateName": "Reino de la  Administración",
+    "type": "declare_war",
+    "title": "Test",
+    "description": "",
+    "value": null,
+    "targetRegionId": "bogota",
+    "proposerId": "admin_root",
+    "proposerNickname": "GOBIERNO",
+    "status": "voting",
+    "votes": {
+      "yes": [
+        "861b2a0a-59c0-46ed-aacc-1af3a0f6f764"
+      ],
+      "no": [],
+      "abstain": []
+    },
+    "votingEndsAt": 1778655898547,
+    "createdAt": 1778569498547,
+    "executedAt": null
+  }
+}

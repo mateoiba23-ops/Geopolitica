@@ -1,0 +1,40 @@
+{
+  "34e79d05-461b-4cc5-b48a-eb4367e243cf": {
+    "id": "34e79d05-461b-4cc5-b48a-eb4367e243cf",
+    "name": "Reino de la  Administración",
+    "color": "#ffffff",
+    "shield": "🦅",
+    "politicalSystem": "republic_presidential",
+    "founderId": "admin_root",
+    "founderNickname": "GOBIERNO",
+    "leaderId": "admin_root",
+    "leaderNickname": "GOBIERNO",
+    "leaderTitle": "Presidente",
+    "members": [
+      {
+        "id": "admin_root",
+        "nickname": "GOBIERNO",
+        "role": "leader",
+        "joinedAt": 1778569437614
+      },
+      {
+        "id": "861b2a0a-59c0-46ed-aacc-1af3a0f6f764",
+        "nickname": "Jimenez",
+        "role": "citizen",
+        "joinedAt": 1778602161187
+      }
+    ],
+    "regions": [],
+    "budget": 0,
+    "treasury": 0,
+    "parliament": [],
+    "allies": [],
+    "enemies": [],
+    "laws": [
+      "41051515-f780-42e0-a6b4-b8f591494bc4"
+    ],
+    "active": true,
+    "foundedAt": 1778569437614,
+    "description": ""
+  }
+}
