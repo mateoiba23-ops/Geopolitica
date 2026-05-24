@@ -4,7 +4,6 @@ let _autoworkInterval = null;
 
 async function renderWork() {
   const content = document.getElementById('game-content');
-<<<<<<< HEAD
   content.innerHTML = '<div class="loading">⏳ Cargando trabajos...</div>';
 
   if (_autoworkInterval) { clearInterval(_autoworkInterval); _autoworkInterval = null; }
@@ -27,28 +26,11 @@ async function renderWork() {
     const residencies = p.residencies || {};
     const myResidency = residencies[p.regionId];
     const hasResidency = myResidency && myResidency.status === 'approved';
-=======
-  content.innerHTML = '<div class="loading">⏳ Buscando trabajos...</div>';
-
-  // Stop any existing autowork UI polling
-  if (_autoworkInterval) { clearInterval(_autoworkInterval); _autoworkInterval = null; }
-
-  try {
-    const [jobsData, awData] = await Promise.all([
-      API.getJobs(),
-      API.getAutoworkStatus()
-    ]);
-
-    const jobs = jobsData.jobs || [];
-    const aw   = awData;
-    const p    = STATE.player;
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
 
     content.innerHTML = `
       <div class="panel">
         <div class="panel-title">⚒️ <span>TRABAJO</span></div>
 
-<<<<<<< HEAD
         <!-- Región actual -->
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:12px">
           <div style="display:flex;align-items:center;justify-content:space-between">
@@ -73,36 +55,22 @@ async function renderWork() {
             : '<div style="margin-top:6px;font-family:var(--font-mono);font-size:10px;color:var(--text-dim)">🌍 Región independiente</div>'}
         </div>
 
-=======
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
         <!-- Energía -->
         <div class="card" style="margin-bottom:12px">
           <div class="card-header">
             <div class="card-title">⚡ ENERGÍA</div>
-<<<<<<< HEAD
             <span class="badge ${p.energy >= 10 ? 'badge-success' : 'badge-danger'}">${Math.floor(p.energy)}/${p.maxEnergy}</span>
           </div>
           ${statBar('ENERGÍA', Math.floor(p.energy), p.maxEnergy, 'energy')}
           <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:4px">
             Mínimo 10⚡ por acción · Solo fábricas de tu región
-=======
-            <span class="badge ${p.energy >= 10 ? 'badge-success' : 'badge-danger'}">${p.energy}/${p.maxEnergy}</span>
-          </div>
-          ${statBar('ENERGÍA', p.energy, p.maxEnergy, 'energy')}
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:4px">
-            Mínimo 10⚡ por acción · Máx 100⚡ por turno
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
           </div>
         </div>
 
         <!-- AUTOWORK PREMIUM -->
         ${renderAutoworkPanel(aw, p)}
 
-<<<<<<< HEAD
         <!-- Filtros por tipo -->
-=======
-        <!-- Filtros -->
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
         <div class="map-filter-row" style="margin-bottom:10px">
           <button class="map-filter-btn active" onclick="filterJobs('all',this)">TODOS</button>
           <button class="map-filter-btn" onclick="filterJobs('gold',this)">⚱️</button>
@@ -110,7 +78,6 @@ async function renderWork() {
           <button class="map-filter-btn" onclick="filterJobs('mineral',this)">⛏️</button>
           <button class="map-filter-btn" onclick="filterJobs('uranium',this)">☢️</button>
           <button class="map-filter-btn" onclick="filterJobs('diamond',this)">💎</button>
-<<<<<<< HEAD
         </div>
 
         <div id="jobs-list">
@@ -120,28 +87,13 @@ async function renderWork() {
                 <span style="font-size:12px;color:var(--text-dim)">Las fábricas deben estar en tu región para trabajar en ellas.</span>
                </div></div>`
             : renderJobsList(jobs)}
-=======
-          <button class="map-filter-btn" onclick="filterJobs('my-region',this)">📍 MÍA</button>
-        </div>
-
-        <div id="jobs-list">
-          ${renderJobsList(jobs)}
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
         </div>
       </div>`;
 
     window._allJobs = jobs;
-<<<<<<< HEAD
     if (aw.active) startAutoworkPolling();
 
   } catch(e) {
-=======
-
-    // Poll autowork status if active
-    if (aw.active) startAutoworkPolling();
-
-  } catch {
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
     content.innerHTML = `<div class="panel"><div class="empty">Error al cargar trabajos</div></div>`;
   }
 }
@@ -254,7 +206,6 @@ function filterJobs(type, btn) {
   document.querySelectorAll('.map-filter-row .map-filter-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   const all = window._allJobs || [];
-<<<<<<< HEAD
   const filtered = type === 'all' ? all : all.filter(j => j.type === type);
   document.getElementById('jobs-list').innerHTML = renderJobsList(filtered);
 }
@@ -269,15 +220,6 @@ async function requestResidency() {
   } catch { showToast('Error al solicitar residencia', 'error'); }
 }
 
-=======
-  let filtered;
-  if (type === 'all')       filtered = all;
-  else if (type === 'my-region') filtered = all.filter(j => j.regionId === STATE.player.regionId);
-  else                      filtered = all.filter(j => j.type === type);
-  document.getElementById('jobs-list').innerHTML = renderJobsList(filtered);
-}
-
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
 // ─── Modal trabajo manual ─────────────────────────────────────────────────────
 
 function showWorkModal(factoryId, factoryName, salary, icon) {

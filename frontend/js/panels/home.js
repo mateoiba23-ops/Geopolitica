@@ -8,15 +8,9 @@ async function renderHome() {
   const medicineLvl = region ? region.medicine : 1;
 
   // Energy regen info
-<<<<<<< HEAD
   const regenPerMin = medicineLvl / 10;
   const timeToFull = p.energy < p.maxEnergy && regenPerMin > 0
     ? Math.ceil((p.maxEnergy - p.energy) / regenPerMin)
-=======
-  const regenPer10 = medicineLvl;
-  const timeToFull = p.energy < p.maxEnergy
-    ? Math.ceil(((p.maxEnergy - p.energy) / regenPer10) * 10)
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
     : 0;
 
   // XP progress
@@ -54,7 +48,6 @@ async function renderHome() {
       <div class="card">
         <div class="card-header">
           <div class="card-title">⚡ ESTADO</div>
-<<<<<<< HEAD
           ${timeToFull > 0 ? `<span class="badge badge-warning">+${regenPerMin.toFixed(1)}/min</span>` : `<span class="badge badge-success">LLENA</span>`}
         </div>
         ${statBar('ENERGÍA', Math.floor(p.energy), p.maxEnergy, 'energy')}
@@ -64,14 +57,6 @@ async function renderHome() {
           ⚡ +${regenPerMin.toFixed(1)}/min en ${regionName}
           ${timeToFull > 0 ? ` · Lleno en ~${timeToFull} min` : ' · LLENA'}
         </div>
-=======
-          ${timeToFull > 0 ? `<span class="badge badge-warning">+${regenPer10}/10min</span>` : `<span class="badge badge-success">LLENO</span>`}
-        </div>
-        ${statBar('ENERGÍA', p.energy, p.maxEnergy, 'energy')}
-        ${statBar('EXPERIENCIA', p.xp, p.xpToNext, 'xp')}
-        ${statBar('EXP. LABORAL', p.workXp, p.workXpToNext, 'generic')}
-        ${timeToFull > 0 ? `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);margin-top:6px">⏱️ Lleno en ~${timeToFull} min</div>` : ''}
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
 
       <!-- Wallet -->
@@ -124,24 +109,18 @@ async function renderHome() {
           <div class="home-action-icon">🏛️</div>
           <div class="home-action-label">POLÍTICA</div>
         </button>
-<<<<<<< HEAD
         <button class="home-action-btn" onclick="navigate('parties')">
           <div class="home-action-icon">🗳️</div>
           <div class="home-action-label">PARTIDOS</div>
         </button>
-=======
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
         <button class="home-action-btn" onclick="navigate('rankings')">
           <div class="home-action-icon">🏆</div>
           <div class="home-action-label">RANKINGS</div>
         </button>
-<<<<<<< HEAD
         <button class="home-action-btn" onclick="navigate('war')">
           <div class="home-action-icon">⚔️</div>
           <div class="home-action-label">GUERRAS</div>
         </button>
-=======
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
 
       <!-- Skills summary -->

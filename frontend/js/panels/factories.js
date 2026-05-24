@@ -206,7 +206,6 @@ async function toggleFactory(factoryId, btn) {
 
 function showCreateFactoryModal() {
   const p = STATE.player;
-<<<<<<< HEAD
   const regionName = getRegionName(p.regionId);
   const types = [
     { id: 'gold',    icon: '⚱️', name: 'Mina de Oro',          money: 5000,  gold: 20 },
@@ -221,19 +220,6 @@ function showCreateFactoryModal() {
     <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);margin-bottom:14px">
       📍 Se construirá en tu región actual: <strong style="color:var(--accent)">${regionName}</strong>
     </div>
-=======
-  const types = [
-    { id: 'gold', icon: '⚱️', name: 'Fábrica de Oro', money: 5000, gold: 20 },
-    { id: 'oil', icon: '🛢️', name: 'Refinería de Petróleo', money: 8000, gold: 25 },
-    { id: 'mineral', icon: '⛏️', name: 'Mina Mineral', money: 4000, gold: 15 },
-    { id: 'uranium', icon: '☢️', name: 'Planta de Uranio', money: 15000, gold: 50 },
-    { id: 'diamond', icon: '💎', name: 'Mina de Diamantes', money: 10000, gold: 35 }
-  ];
-  const regions = STATE.regions;
-
-  openModal(`
-    <div style="font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:14px">➕ NUEVA FÁBRICA</div>
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
 
     <div class="field-group" style="margin-bottom:12px">
       <label>TIPO DE FÁBRICA</label>
@@ -242,46 +228,23 @@ function showCreateFactoryModal() {
       </select>
     </div>
 
-<<<<<<< HEAD
-=======
-    <div class="field-group" style="margin-bottom:12px">
-      <label>REGIÓN</label>
-      <select id="new-factory-region">
-        ${regions.map(r => `<option value="${r.id}" ${r.id === p.regionId ? 'selected' : ''}>${r.name}</option>`).join('')}
-      </select>
-    </div>
-
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
     <div class="field-group" style="margin-bottom:14px">
       <label>NOMBRE (opcional)</label>
       <input type="text" id="new-factory-name" placeholder="Nombre de tu fábrica" maxlength="40">
     </div>
 
     <div style="background:var(--bg-input);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary)">
-<<<<<<< HEAD
       💵 $${formatMoney(p.money)} &nbsp;|&nbsp; ⚱️ ${p.gold} oro disponibles
     </div>
 
     <button class="btn-primary btn-full" onclick="doCreateFactory()">🏭 CREAR FÁBRICA EN ${regionName.toUpperCase()}</button>
-=======
-      💵 Dinero: $${formatMoney(p.money)} &nbsp;|&nbsp; ⚱️ Oro: ${p.gold}
-    </div>
-
-    <button class="btn-primary btn-full" onclick="doCreateFactory()">🏭 CREAR FÁBRICA</button>
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
   `);
 }
 
 async function doCreateFactory() {
-<<<<<<< HEAD
   const type     = document.getElementById('new-factory-type').value;
   const regionId = STATE.player.regionId; // Siempre en la región actual
   const name     = document.getElementById('new-factory-name').value.trim();
-=======
-  const type = document.getElementById('new-factory-type').value;
-  const regionId = document.getElementById('new-factory-region').value;
-  const name = document.getElementById('new-factory-name').value.trim();
->>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
 
   const data = await API.createFactory(type, regionId, name || undefined);
   if (data.error) return showToast(data.error, 'error');
