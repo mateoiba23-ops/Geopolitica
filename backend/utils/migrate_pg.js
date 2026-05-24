@@ -4,6 +4,8 @@
 //   DATABASE_URL=postgres://... node backend/utils/migrate_pg.js
 // Idempotente — usa ON CONFLICT DO NOTHING en todo.
 
+require("dotenv").config();
+
 const { Pool } = require('pg');
 const path     = require('path');
 const fs       = require('fs');
