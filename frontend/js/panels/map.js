@@ -257,6 +257,7 @@ async function showRegionDetail(regionId) {
               <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent)">Nv.${pl.level}</span>
             </div>`).join('')}
         </div>`:''}
+<<<<<<< HEAD
       <!-- Acciones -->
       <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
         ${!isMyRegion
@@ -266,6 +267,12 @@ async function showRegionDetail(regionId) {
           <button class="btn-ghost btn-full" onclick="closeModal();navigate('work')">⚒️ VER TRABAJOS DISPONIBLES</button>
           ${renderResidencyButton('${regionId}', player)}
         ` : ''}
+=======
+      <div style="display:flex;gap:8px;margin-top:16px">
+        ${!isMyRegion
+          ?`<button class="btn-primary btn-full" onclick="closeModal();moveToRegion('${regionId}')">📍 MUDARSE ($50)</button>`
+          :`<div class="badge badge-accent" style="padding:10px;width:100%;text-align:center;display:block">📍 TU REGIÓN ACTUAL</div>`}
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
     `);
   } catch {}
@@ -305,6 +312,7 @@ function applyMapFilter(regions, filter) {
     default:                return regions;
   }
 }
+<<<<<<< HEAD
 
 
 function renderResidencyButton(regionId, player) {
@@ -335,3 +343,5 @@ async function requestResidencyFromMap(regionId) {
     showToast(data.message, data.autoApproved ? 'success' : '');
   } catch { showToast('Error al solicitar residencia', 'error'); }
 }
+=======
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd

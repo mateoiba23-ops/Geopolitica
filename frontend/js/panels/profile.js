@@ -5,6 +5,7 @@ async function renderProfile() {
 
   const region       = STATE.regions.find(r => r.id === p.regionId);
   const regionName   = region ? region.name : p.regionId;
+<<<<<<< HEAD
   const endurance    = (p.skills && p.skills.endurance) || 1;
   const education    = (p.skills && p.skills.education) || 1;
   const strength     = (p.skills && p.skills.strength)  || 1;
@@ -26,6 +27,26 @@ async function renderProfile() {
   };
 
   content.innerHTML = `
+=======
+  const workLevelCap = 10 + ((p.skills && p.skills.education) || 1) * 2;
+  const endurance    = (p.skills && p.skills.endurance) || 1;
+  const education    = (p.skills && p.skills.education) || 1;
+  const strength     = (p.skills && p.skills.strength)  || 1;
+
+  // Derived values
+  const maxEnergy      = 100 + (p.level - 1) * 1 + endurance * 3 + (p.premium ? 50 : 0);
+  const warehouseLimit = 50  + endurance * 5;
+  const energyReduc    = Math.min(endurance * 0.5, 40).toFixed(1);
+  const workXpBonus    = (education * 2).toFixed(0);
+  const goldBonus      = (education * 1.5).toFixed(1);
+  const salaryBonus    = (education * 1).toFixed(0);
+
+  const premiumActive  = p.premium && p.premiumUntil && p.premiumUntil > Date.now();
+  const premiumDaysLeft = premiumActive ? Math.ceil((p.premiumUntil - Date.now()) / 86400000) : 0;
+
+  content.innerHTML = `
+    <!-- Hero -->
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
     <div class="profile-hero">
       <div class="profile-avatar">👤</div>
       <div class="profile-nick">${p.nickname}</div>
@@ -37,6 +58,10 @@ async function renderProfile() {
       </div>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Stats rápidas -->
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
     <div class="profile-stats-grid">
       <div class="profile-stat-card">
         <div class="profile-stat-val text-accent">${p.level}</div>
@@ -51,7 +76,11 @@ async function renderProfile() {
         <div class="profile-stat-label">ORO</div>
       </div>
       <div class="profile-stat-card">
+<<<<<<< HEAD
         <div class="profile-stat-val text-energy">${Math.floor(p.energy)}/${maxEnergy}</div>
+=======
+        <div class="profile-stat-val text-energy">${p.energy}/${maxEnergy}</div>
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
         <div class="profile-stat-label">ENERGÍA</div>
       </div>
       <div class="profile-stat-card">
@@ -68,6 +97,7 @@ async function renderProfile() {
       <!-- Progresión -->
       <div class="card">
         <div class="card-header"><div class="card-title">📊 PROGRESIÓN</div></div>
+<<<<<<< HEAD
         ${statBar('EXPERIENCIA GENERAL', Math.floor(p.xp), Math.floor(p.xpToNext), 'xp')}
         ${statBar(`NIVEL LABORAL (${p.workLevel}/${workLevelCap})`, Math.floor(p.workXp), Math.floor(p.workXpToNext), 'generic')}
         ${statBar('ENERGÍA', Math.floor(p.energy), maxEnergy, 'energy')}
@@ -79,12 +109,23 @@ async function renderProfile() {
           ? `<div style="font-family:var(--font-mono);font-size:10px;color:var(--warning);margin-top:4px">
               ⚠️ Nivel laboral máximo. Sube EDUCACIÓN para desbloquear más.
              </div>` : ''}
+=======
+        ${statBar('EXPERIENCIA GENERAL', p.xp, p.xpToNext, 'xp')}
+        ${statBar(`NIVEL LABORAL (${p.workLevel}/${workLevelCap})`, p.workXp, p.workXpToNext, 'generic')}
+        ${statBar('ENERGÍA', p.energy, maxEnergy, 'energy')}
+        ${p.workLevel >= workLevelCap
+          ? `<div style="font-family:var(--font-mono);font-size:10px;color:var(--warning);margin-top:6px">
+              ⚠️ Nivel laboral máximo. Sube EDUCACIÓN para desbloquear más.
+             </div>`
+          : ''}
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
 
       <!-- Habilidades -->
       <div class="card">
         <div class="card-header">
           <div class="card-title">🎯 HABILIDADES</div>
+<<<<<<< HEAD
           <span style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim)">Sube entrenando o actuando</span>
         </div>
 
@@ -111,12 +152,39 @@ async function renderProfile() {
             `+${(education*2).toFixed(0)}% XP laboral`,
             `+${(education*1.5).toFixed(1)}% producción minas de oro`,
             `+${education}% salario neto`,
+=======
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim)">Costo: oro + 20⚡</span>
+        </div>
+
+        ${renderSkillItem({
+          icon: '⚔️', name: 'FUERZA', level: strength,
+          goldCost: Math.max(1, Math.floor(strength * 1.5)),
+          effects: [
+            `+${(strength * 0.5).toFixed(1)}% daño militar`,
+            `+${(strength * 0.2).toFixed(1)}% producción general`
+          ],
+          nextEffects: [
+            `+${((strength+1) * 0.5).toFixed(1)}% daño militar`,
+            `+${((strength+1) * 0.2).toFixed(1)}% producción general`
+          ],
+          skill: 'strength', player: p
+        })}
+
+        ${renderSkillItem({
+          icon: '📚', name: 'EDUCACIÓN', level: education,
+          goldCost: Math.max(1, Math.floor(education * 1.5)),
+          effects: [
+            `+${workXpBonus}% XP laboral`,
+            `+${goldBonus}% producción minas de oro`,
+            `+${salaryBonus}% salario neto`,
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
             `Nivel lab. máximo: ${workLevelCap}`
           ],
           nextEffects: [
             `+${(education+1)*2}% XP laboral`,
             `Nivel lab. máximo: ${10+(education+1)*2}`
           ],
+<<<<<<< HEAD
           xpSource: 'Gana XP trabajando ⚒️ (+0.8 XP/acción)',
           player: p
         })}
@@ -124,6 +192,13 @@ async function renderProfile() {
         ${renderSkillBlock({
           icon: '🛡️', name: 'AGUANTE', skill: 'endurance',
           level: endurance, xp: skillXp.endurance, xpNext: skillXpNext.endurance,
+=======
+          skill: 'education', player: p
+        })}
+
+        ${renderSkillItem({
+          icon: '🛡️', name: 'AGUANTE', level: endurance,
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
           goldCost: Math.max(1, Math.floor(endurance * 1.5)),
           effects: [
             `${maxEnergy} energía máxima`,
@@ -131,6 +206,7 @@ async function renderProfile() {
             `${warehouseLimit} slots almacén`
           ],
           nextEffects: [
+<<<<<<< HEAD
             `${maxEnergy+3} energía máxima`,
             `${warehouseLimit+5} slots almacén`
           ],
@@ -141,6 +217,14 @@ async function renderProfile() {
         <div style="font-size:11px;color:var(--text-dim);margin-top:8px;font-family:var(--font-mono);padding:8px;background:var(--bg-input);border-radius:6px">
           💡 Las habilidades también suben con el tiempo por tus acciones. Entrenar con oro acelera el proceso.
         </div>
+=======
+            `${maxEnergy + 3} energía máxima`,
+            `-${Math.min((endurance+1)*0.5,40).toFixed(1)}% costo energía`,
+            `${warehouseLimit + 5} slots almacén`
+          ],
+          skill: 'endurance', player: p
+        })}
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
 
       <!-- Cuenta -->
@@ -152,7 +236,20 @@ async function renderProfile() {
         <div class="info-row"><span class="info-label">ÚLTIMA SESIÓN</span><span class="info-val">${formatTime(p.lastSeen)}</span></div>
         ${premiumActive
           ? `<div class="info-row"><span class="info-label">PREMIUM HASTA</span><span class="info-val text-gold">${new Date(p.premiumUntil).toLocaleDateString('es-CO')}</span></div>`
+<<<<<<< HEAD
           : `<div style="margin-top:8px"><button class="btn-gold btn-full btn-sm" onclick="navigate('store')">⭐ Activar Premium</button></div>`}
+=======
+          : `<div style="margin-top:10px"><button class="btn-gold btn-full btn-sm" onclick="navigate('store')">⭐ Activar Premium</button></div>`}
+      </div>
+
+      <!-- Almacén preview -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📦 ALMACÉN PERSONAL</div>
+          <button class="btn-ghost btn-sm" onclick="navigate('warehouse')">Ver todo</button>
+        </div>
+        ${renderWarehousePreview(p.warehouse || {})}
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
 
       <!-- Estado político -->
@@ -164,6 +261,7 @@ async function renderProfile() {
         <div id="profile-state-info"><div style="font-size:12px;color:var(--text-dim)">Cargando...</div></div>
       </div>
 
+<<<<<<< HEAD
       <!-- Almacén preview -->
       <div class="card">
         <div class="card-header">
@@ -171,6 +269,27 @@ async function renderProfile() {
           <button class="btn-ghost btn-sm" onclick="navigate('warehouse')">Ver todo</button>
         </div>
         ${renderWarehousePreview(p.warehouse || {})}
+=======
+      <!-- Configuración visual -->
+      <div class="card" style="margin-top:8px">
+        <div class="card-header"><div class="card-title">⚙️ CONFIGURACIÓN</div></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0">
+          <div>
+            <div style="font-family:var(--font-display);font-size:13px;font-weight:600">TEMA VISUAL</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Moderno o Clásico</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <button id="btn-theme-modern"
+              style="padding:6px 12px;border-radius:6px;font-family:var(--font-mono);font-size:11px;cursor:pointer;
+                background:var(--bg-input);border:1px solid var(--border);color:var(--text-secondary)"
+              onclick="applyTheme('modern');updateThemeBtns()">✨ MODERNO</button>
+            <button id="btn-theme-classic"
+              style="padding:6px 12px;border-radius:6px;font-family:var(--font-mono);font-size:11px;cursor:pointer;
+                background:var(--bg-input);border:1px solid var(--border);color:var(--text-secondary)"
+              onclick="applyTheme('classic');updateThemeBtns()">🏛️ CLÁSICO</button>
+          </div>
+        </div>
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       </div>
 
       <!-- Configuración -->
@@ -196,6 +315,7 @@ async function renderProfile() {
 
       <button class="btn-danger btn-full" style="margin-top:8px" onclick="doLogout()">🚪 CERRAR SESIÓN</button>
     </div>`;
+<<<<<<< HEAD
 
   setTimeout(() => loadProfileStateInfo(), 100);
 }
@@ -207,6 +327,15 @@ function renderSkillBlock({ icon, name, skill, level, xp, xpNext, goldCost, effe
 
   return `
     <div class="skill-item" style="flex-direction:column;align-items:stretch;gap:0;margin-bottom:12px">
+=======
+}
+
+function renderSkillItem({ icon, name, level, goldCost, effects, nextEffects, skill, player }) {
+  const canAfford  = player.gold >= goldCost && player.energy >= 20;
+
+  return `
+    <div class="skill-item" style="flex-direction:column;align-items:stretch;gap:0">
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
         <div class="skill-icon">${icon}</div>
         <div style="flex:1">
@@ -219,6 +348,7 @@ function renderSkillBlock({ icon, name, skill, level, xp, xpNext, goldCost, effe
           ⚱️${goldCost} +20⚡
         </button>
       </div>
+<<<<<<< HEAD
 
       <!-- Barra de XP de habilidad -->
       <div style="margin-bottom:8px">
@@ -239,6 +369,15 @@ function renderSkillBlock({ icon, name, skill, level, xp, xpNext, goldCost, effe
         ${nextEffects.length > 0 ? `
           <div style="border-top:1px solid var(--border);margin-top:5px;padding-top:5px">
             <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:3px">PRÓXIMO NIVEL</div>
+=======
+      <!-- Efectos actuales -->
+      <div style="background:var(--bg-input);border-radius:8px;padding:8px 10px;font-size:11px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:5px">EFECTOS ACTUALES</div>
+        ${effects.map(e => `<div style="color:var(--text-secondary);margin-bottom:2px">✓ ${e}</div>`).join('')}
+        ${nextEffects.length > 0 ? `
+          <div style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px">
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-dim);margin-bottom:4px">PRÓXIMO NIVEL</div>
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
             ${nextEffects.map(e => `<div style="color:var(--accent);margin-bottom:2px">→ ${e}</div>`).join('')}
           </div>` : ''}
       </div>
@@ -258,6 +397,7 @@ function renderWarehousePreview(warehouse) {
   </div>`;
 }
 
+<<<<<<< HEAD
 async function loadProfileStateInfo() {
   try {
     const data = await API.getMyState();
@@ -283,6 +423,11 @@ async function loadProfileStateInfo() {
 async function trainSkill(skill) {
   const p       = STATE.player;
   const level   = p.skills[skill] || 1;
+=======
+async function trainSkill(skill) {
+  const p        = STATE.player;
+  const level    = p.skills[skill] || 1;
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
   const goldCost = Math.max(1, Math.floor(level * 1.5));
 
   try {
@@ -290,6 +435,10 @@ async function trainSkill(skill) {
     if (data.error) return showToast(data.error, 'error');
     updatePlayerState(data.player);
     showToast(`✅ ${data.message}`, 'success');
+<<<<<<< HEAD
+=======
+    // Mostrar efectos
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
     if (data.effects && data.effects.length > 0) {
       setTimeout(() => showToast(data.effects.join(' · '), '', 4000), 500);
     }
@@ -297,6 +446,20 @@ async function trainSkill(skill) {
   } catch { showToast('Error al entrenar', 'error'); }
 }
 
+<<<<<<< HEAD
+=======
+function updateThemeBtns() {
+  const theme = getCurrentTheme();
+  const mBtn  = document.getElementById('btn-theme-modern');
+  const cBtn  = document.getElementById('btn-theme-classic');
+  if (!mBtn || !cBtn) return;
+  const activeStyle   = 'background:var(--accent);border-color:var(--accent);color:var(--bg-base)';
+  const inactiveStyle = 'background:var(--bg-input);border:1px solid var(--border);color:var(--text-secondary)';
+  mBtn.style.cssText += ';' + (theme === 'modern'  ? activeStyle : inactiveStyle);
+  cBtn.style.cssText += ';' + (theme === 'classic' ? activeStyle : inactiveStyle);
+}
+
+>>>>>>> 38cc06ae9d80f7a4ac40fd9e22d3cd7c7d98b5fd
 async function doLogout() {
   try { await API.logout(); } catch {}
   API.token = null;
