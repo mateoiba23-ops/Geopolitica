@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Simulador geopolitico persistente multijugador - Colombia",
   "main": "backend/server.js",
+  
+  "scripts": {
+  "start": "node backend/server.js",
+  "postinstall": "node backend/utils/migrate_pg.js"
+}
+  
   "scripts": {
     "start": "node backend/server.js",
     "dev": "node backend/server.js",
