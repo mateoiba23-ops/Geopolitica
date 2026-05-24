@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="modern">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GEOPOLÍTICA — Colombia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/panels.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+<!-- ─── AUTH SCREEN ──────────────────────────────────────────────────────── -->
+<div id="auth-screen" class="screen active">
+  <div class="auth-bg">
+    <div class="auth-grid"></div>
+    <div class="auth-glow"></div>
+  </div>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <div class="logo-icon">🌍</div>
+      <h1 class="logo-title">GEOPOLÍTICA</h1>
+      <p class="logo-sub">COLOMBIA · SIMULADOR PERSISTENTE</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">INGRESAR</button>
+      <button class="auth-tab" onclick="switchAuthTab('register')">REGISTRARSE</button>
+    </div>
+    <div id="login-form" class="auth-form active">
+      <div class="field-group">
+        <label>EMAIL</label>
+        <input type="email" id="login-email" placeholder="correo@ejemplo.com" autocomplete="email">
+      </div>
+      <div class="field-group">
+        <label>CONTRASEÑA</label>
+        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-primary btn-full" onclick="doLogin()">⚡ INGRESAR AL JUEGO</button>
+    </div>
+    <div id="register-form" class="auth-form">
+      <div class="field-group">
+        <label>NICKNAME</label>
+        <input type="text" id="reg-nickname" placeholder="MiNombre123" maxlength="20">
+      </div>
+      <div class="field-group">
+        <label>EMAIL</label>
+        <input type="email" id="reg-email" placeholder="correo@ejemplo.com" autocomplete="email">
+      </div>
+      <div class="field-group">
+        <label>CONTRASEÑA</label>
+        <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+      </div>
+      <div class="field-group">
+        <label>REGIÓN INICIAL</label>
+        <select id="reg-region">
+          <option value="">Cargando regiones...</option>
+        </select>
+      </div>
+      <button class="btn-primary btn-full" onclick="doRegister()">🌟 CREAR CUENTA</button>
+    </div>
+    <div id="auth-error" class="auth-error hidden"></div>
+  </div>
+</div>
+
+<!-- ─── MAIN GAME SCREEN ─────────────────────────────────────────────────── -->
+<div id="game-screen" class="screen">
+
+  <!-- Top HUD -->
+  <header class="hud">
+    <div class="hud-left">
+      <div class="hud-logo">GEO</div>
+      <div class="hud-stats">
+        <span class="hud-stat energy" id="hud-energy">
+          ⚡ <span id="hud-energy-val">0</span>/<span id="hud-energy-max">100</span>
+        </span>
+        <span class="hud-stat money" id="hud-money" onclick="navigate('transactions')" style="cursor:pointer">
+          💵 <span id="hud-money-val">0</span>
+        </span>
+        <span class="hud-stat gold" id="hud-gold" onclick="navigate('transactions')" style="cursor:pointer">
+          ⚱️ <span id="hud-gold-val">0</span>
+        </span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <div class="hud-player" onclick="navigate('profile')">
+        <span id="hud-nickname">---</span>
+        <span class="hud-level" id="hud-level">Nv.1</span>
+      </div>
+      <button class="hud-notif" onclick="navigate('notifications')" id="notif-btn">🔔</button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="game-content" id="game-content"></main>
+
+  <!-- Bottom Navigation — 5 botones principales -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" onclick="navigate('home')" data-tab="home">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Inicio</span>
+    </button>
+    <button class="nav-btn" onclick="navigate('work')" data-tab="work">
+      <span class="nav-icon">⚒️</span>
+      <span class="nav-label">Trabajo</span>
+    </button>
+    <button class="nav-btn" onclick="navigate('map')" data-tab="map">
+      <span class="nav-icon">🗺️</span>
+      <span class="nav-label">Mapa</span>
+    </button>
+    <button class="nav-btn" onclick="navigate('politics')" data-tab="politics">
+      <span class="nav-icon">🏛️</span>
+      <span class="nav-label">Política</span>
+    </button>
+    <button class="nav-btn" onclick="navigate('war')" data-tab="war">
+      <span class="nav-icon">⚔️</span>
+      <span class="nav-label">Guerra</span>
+    </button>
+    <button class="nav-btn" onclick="navigate('profile')" data-tab="profile">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Perfil</span>
+    </button>
+    <!-- Admin: solo visible para admins -->
+    <button class="nav-btn hidden" id="admin-nav-btn" onclick="navigate('admin')" data-tab="admin">
+      <span class="nav-icon">👑</span>
+      <span class="nav-label">Admin</span>
+    </button>
+  </nav>
+
+  <!-- Theme toggle button -->
+  <button id="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar tema">🎨</button>
+
+</div>
+
+<!-- ─── TOAST ─────────────────────────────────────────────────────────────── -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- ─── MODAL ────────────────────────────────────────────────────────────── -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- Scripts — orden importante -->
+<script src="js/api.js"></script>
+<script src="js/state.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/panels/home.js"></script>
+<script src="js/panels/map.js"></script>
+<script src="js/panels/profile.js"></script>
+<script src="js/panels/factories.js"></script>
+<script src="js/panels/work.js"></script>
+<script src="js/panels/market.js"></script>
+<script src="js/panels/chat.js"></script>
+<script src="js/panels/economy.js"></script>
+<script src="js/panels/store.js"></script>
+<script src="js/panels/transactions.js"></script>
+<script src="js/panels/politics.js"></script>
+  <script src="js/panels/parties.js"></script>
+  <script src="js/panels/war.js"></script>
+<script src="js/panels/admin.js"></script>
+  <script src="js/panels/rankings.js"></script>
+  <script src="js/panels/public_profile.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
