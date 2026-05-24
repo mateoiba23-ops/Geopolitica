@@ -7,7 +7,7 @@
   "scripts": {
   "start": "node backend/server.js",
   "dev": "node backend/server.js",
-  "migrate": "node backend/utils/migrate_pg.js",
+  "migrate": "node backend/utils/migrate_pg.js"
 },
   "dependencies": {
     "bcrypt": "^6.0.0",
